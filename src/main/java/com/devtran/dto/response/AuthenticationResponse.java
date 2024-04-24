@@ -1,9 +1,11 @@
 /**
  * 
  */
-package com.devtran.dto.request;
+package com.devtran.dto.response;
 
+import com.devtran.dto.request.ApiReponse;
 import com.fasterxml.jackson.annotation.JsonInclude;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,10 +23,7 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Builder
-public class ApiReponse<T> {
-
-	int code = 1000;
-	String messge;
-	T result;
+public class AuthenticationResponse {
+	boolean authencated;
 
 }

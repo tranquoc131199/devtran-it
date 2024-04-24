@@ -6,6 +6,8 @@ package com.devtran.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.devtran.dto.request.UserCreationRequest;
@@ -37,6 +39,8 @@ public class UserService {
 			throw new AppException(ErrorCode.USER_EXISTED);
 		}
 		User user = userMapper.toUser(request);
+		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
+		user.setPassword(passwordEncoder.encode(request.getPassword()));
 		return repository.save(user);
 	}
 
