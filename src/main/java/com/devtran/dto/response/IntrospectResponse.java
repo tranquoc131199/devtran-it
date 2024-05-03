@@ -3,9 +3,7 @@
  */
 package com.devtran.dto.response;
 
-import com.devtran.dto.request.ApiReponse;
 import com.fasterxml.jackson.annotation.JsonInclude;
-
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,8 +21,7 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Builder
-public class AuthenticationResponse {
-	boolean authencated;
-	String token;
+public class IntrospectResponse {
+	boolean valid;
 
 }

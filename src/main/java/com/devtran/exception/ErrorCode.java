@@ -19,6 +19,7 @@ public enum ErrorCode {
 	INVALID_KEY(0001,"Invalid Key"),
 	USER_NOT_FOUND(1001, "User not found"),
 	USER_NOT_EXIST(1001, "User not found"),
+	UNAUTHENTICATED(1002, "Unauthenticated"),
 	;
 
 	private ErrorCode(int code, String message) {

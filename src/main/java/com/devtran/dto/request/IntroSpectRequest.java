@@ -1,10 +1,4 @@
-/**
- * 
- */
-package com.devtran.dto.response;
-
-import com.devtran.dto.request.ApiReponse;
-import com.fasterxml.jackson.annotation.JsonInclude;
+package com.devtran.dto.request;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -13,18 +7,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
-/**
- * @author pc
- *
- */
 @Data
-@JsonInclude(JsonInclude.Include.NON_NULL)
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Builder
-public class AuthenticationResponse {
-	boolean authencated;
+public class IntroSpectRequest {
 	String token;
 
 }

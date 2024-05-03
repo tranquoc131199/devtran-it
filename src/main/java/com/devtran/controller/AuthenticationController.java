@@ -3,6 +3,8 @@
  */
 package com.devtran.controller;
 
+import java.text.ParseException;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,8 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.devtran.dto.request.ApiReponse;
 import com.devtran.dto.request.AuthenticationRequest;
+import com.devtran.dto.request.IntroSpectRequest;
 import com.devtran.dto.response.AuthenticationResponse;
+import com.devtran.dto.response.IntrospectResponse;
 import com.devtran.service.AuthenticationService;
+import com.nimbusds.jose.JOSEException;
 
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -32,13 +37,22 @@ public class AuthenticationController {
 	@PostMapping("/login")
 	ApiReponse<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request) {
 
-		boolean result = authenticationService.authenticate(request);
+		var result = authenticationService.authenticate(request);
 		
 		
 		return ApiReponse.<AuthenticationResponse>builder()
-				.result(AuthenticationResponse.builder()
-						.authencated(result)
-						.build())
+				.result(result)
+				.build();
+
+	}
+	
+	@PostMapping("/introspect")
+	ApiReponse<IntrospectResponse> introspect(@RequestBody IntroSpectRequest request) throws ParseException, JOSEException {
+
+		var result = authenticationService.iResponse(request);
+		
+		return ApiReponse.<IntrospectResponse>builder()
+				.result(result)
 				.build();
 
 	}
