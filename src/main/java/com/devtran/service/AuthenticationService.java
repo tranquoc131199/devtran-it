@@ -48,7 +48,7 @@ public class AuthenticationService {
 	AuthenticationRepository authenticationRepository;
 	
 	@NonFinal
-	@Value("${jwt.singerKey}")
+	@Value("${jwt.signerKey}")
 	protected String SIGNER_KEY ;
 
 	public AuthenticationResponse authenticate(AuthenticationRequest request) {
