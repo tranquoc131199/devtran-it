@@ -20,7 +20,9 @@ import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import lombok.extern.slf4j.Slf4j;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -33,6 +35,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 @RequestMapping("/users")
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+@Slf4j
 public class UserController {
 
 	UserService userService;
@@ -48,10 +51,16 @@ public class UserController {
 	}
 
 	@GetMapping
-	List<User> getUsers() {
-		return userService.getUsers();
-	}
+	ApiReponse<List<UserResponse>> getUsers() {
 
+		var authentication = SecurityContextHolder.getContext().getAuthentication();
+		log.info("UserName:  {}", authentication.getName());
+		authentication.getAuthorities().forEach(grantedAuthority -> log.info(grantedAuthority.getAuthority()));
+
+		return ApiReponse.<List<UserResponse>>builder()
+				.result(userService.getUsers())
+				.build();
+	}
 	@GetMapping("/{userId}")
 	UserResponse getUserById(@PathVariable("userId") String userId) {
 		return userMapper.toUserResponse(userService.getUserById(userId));
