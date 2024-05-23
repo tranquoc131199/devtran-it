@@ -4,11 +4,14 @@
 package com.devtran.exception;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.devtran.dto.request.ApiReponse;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author pc
@@ -16,10 +19,13 @@ import com.devtran.dto.request.ApiReponse;
  */
 
 @ControllerAdvice
+@Slf4j
 public class GolbalExcroption {
 
 	@ExceptionHandler(value = Exception.class)
-	ResponseEntity<ApiReponse> handlingRuntimeException() {
+	ResponseEntity<ApiReponse> handlingRuntimeException(Exception ex) {
+		  log.error("An error occurred: ", ex);
+		
 		ApiReponse response = new ApiReponse<>();
 		response.setCode(ErrorCode.UNCATGORIZED_EXCEPTION.getCode());
 		response.setMessge(ErrorCode.UNCATGORIZED_EXCEPTION.getMessage());
@@ -39,7 +45,7 @@ public class GolbalExcroption {
 		response.setCode(errorCode.getCode());
 		response.setMessge(errorCode.getMessage());
 
-		return ResponseEntity.ok().body(response);
+		return ResponseEntity.status(errorCode.getStatusCode()).body(response);
 	}
 	
 	@ExceptionHandler(value = MethodArgumentNotValidException.class)
@@ -57,7 +63,19 @@ public class GolbalExcroption {
 		response.setCode(errorCode.getCode());
 		response.setMessge(errorCode.getMessage());
 		
-		return ResponseEntity.ok().body(response);
+		return ResponseEntity.status(errorCode.getStatusCode()).body(response);
+	}
+	
+	@ExceptionHandler(value = AccessDeniedException.class)
+	ResponseEntity<ApiReponse> handlingAccessDeniedException() {
+		ErrorCode errorCode = ErrorCode.UNAUTHORIZED;
+		
+		return ResponseEntity.status(errorCode.getStatusCode()).body(
+				ApiReponse.builder()
+				.code(errorCode.getCode())
+				.messge(errorCode.getMessage())
+				.build()
+				);
 	}
 	
 }

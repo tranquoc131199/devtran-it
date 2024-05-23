@@ -62,14 +62,24 @@ public class UserController {
 				.build();
 	}
 	@GetMapping("/{userId}")
-	UserResponse getUserById(@PathVariable("userId") String userId) {
-		return userMapper.toUserResponse(userService.getUserById(userId));
+	ApiReponse<UserResponse> getUserById(@PathVariable("userId") String userId) {
+		return ApiReponse.<UserResponse>builder()
+				.result(userMapper.toUserResponse(userService.getUserById(userId)))
+				.build();
 	}
 
 	@PutMapping("/{userId}")
-	UserResponse putMethodName(@PathVariable String userId, @RequestBody UserUpdateRequest request) {
-
-		return userMapper.toUserResponse(userService.updateRequest(userId, request));
+	ApiReponse<UserResponse> putMethodName(@PathVariable String userId, @RequestBody UserUpdateRequest request) {
+		return ApiReponse.<UserResponse>builder()
+				.result(userMapper.toUserResponse(userService.updateRequest(userId, request)))
+				.build();
+	}
+	
+	@GetMapping("/myinfo")
+	ApiReponse<UserResponse> getMyInfo() {
+		return ApiReponse.<UserResponse>builder()
+				.result(userService.getMyInfo())
+				.build();
 	}
 
 }
