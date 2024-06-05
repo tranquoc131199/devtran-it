@@ -1,8 +1,11 @@
+/**
+ * 
+ */
 package com.devtran.dto.response;
 
-import java.time.LocalDate;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,17 +13,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
+/**
+ * @author pc
+ *
+ */
 @Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class UserResponse {
-	String id;
-	String username;
-	String firstName;
-	String lastName;
-	LocalDate lod;
-	Set<RoleResponse> roles;
+@Builder
+public class RoleResponse {
+	String namne;
+	String description;
+	
+	Set<PermissionResponse> permissions;
 
 }

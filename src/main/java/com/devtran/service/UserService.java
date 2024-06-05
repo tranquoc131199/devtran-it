@@ -19,6 +19,7 @@ import com.devtran.enums.Role;
 import com.devtran.exception.AppException;
 import com.devtran.exception.ErrorCode;
 import com.devtran.mapper.UserMapper;
+import com.devtran.repository.RoleRepository;
 import com.devtran.repository.UserRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -38,6 +39,7 @@ public class UserService {
 	UserRepository repository;
 	UserMapper userMapper;
 	PasswordEncoder passwordEncoder;
+	RoleRepository roleRepository;
 
 	public User createRequest(UserCreationRequest request) {
 		if (repository.existsByUsername(request.getUsername())) {
@@ -54,7 +56,8 @@ public class UserService {
 		return repository.save(user);
 	}
 
-	@PreAuthorize("hasRole('ADMIN')")
+	//@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasAuthority('UPDATE_DATA')")
 	public List<UserResponse> getUsers(){
 		log.info("In method get Users");
         return repository.findAll().stream()
@@ -69,6 +72,12 @@ public class UserService {
 	public User updateRequest(String userId, UserUpdateRequest request) {
 		User user = getUserById(userId);
 		userMapper.updateUser(user, request);
+		
+		user.setPassword(passwordEncoder.encode(request.getPassword()));
+		
+		var roles = roleRepository.findAllById(request.getRoles());
+		user.setRoles(new HashSet<>(roles));
+		
 		return repository.save(user);
 	}
 	

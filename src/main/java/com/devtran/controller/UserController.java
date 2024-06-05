@@ -69,7 +69,7 @@ public class UserController {
 	}
 
 	@PutMapping("/{userId}")
-	ApiReponse<UserResponse> putMethodName(@PathVariable String userId, @RequestBody UserUpdateRequest request) {
+	ApiReponse<UserResponse> updateUser(@PathVariable String userId, @RequestBody UserUpdateRequest request) {
 		return ApiReponse.<UserResponse>builder()
 				.result(userMapper.toUserResponse(userService.updateRequest(userId, request)))
 				.build();

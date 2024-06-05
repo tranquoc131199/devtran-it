@@ -3,6 +3,8 @@
  */
 package com.devtran.dto.request;
 
+import java.util.List;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,5 +26,7 @@ public class UserUpdateRequest {
 	String password;
 	String firstName;
 	String lastName;
+	
+	List<String> roles;
 
 }
