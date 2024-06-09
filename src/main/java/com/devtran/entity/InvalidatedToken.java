@@ -1,38 +1,38 @@
 /**
  * 
  */
-package com.devtran.dto.request;
+package com.devtran.entity;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.Date;
+import java.util.Set;
 
-import com.devtran.validator.DobConstraint;
-
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 /**
  * @author pc
  *
  */
-@Data
+
+@Entity
+@Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class UserUpdateRequest {
+public class InvalidatedToken {
 
-	String password;
-	String firstName;
-	String lastName;
-	
-	@DobConstraint(min = 2, message = "INVALID_DOB")
-	LocalDate dob;
-	
-	List<String> roles;
+	@Id
+	String id;
+	Date expiryTime;
 
 }
