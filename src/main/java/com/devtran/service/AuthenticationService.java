@@ -18,6 +18,7 @@ import org.springframework.util.CollectionUtils;
 import com.devtran.dto.request.AuthenticationRequest;
 import com.devtran.dto.request.IntroSpectRequest;
 import com.devtran.dto.request.LogoutRequest;
+import com.devtran.dto.request.RefreshRequest;
 import com.devtran.dto.response.AuthenticationResponse;
 import com.devtran.dto.response.IntrospectResponse;
 import com.devtran.entity.InvalidatedToken;
@@ -26,6 +27,7 @@ import com.devtran.exception.AppException;
 import com.devtran.exception.ErrorCode;
 import com.devtran.repository.AuthenticationRepository;
 import com.devtran.repository.InvalidatedTokenRepository;
+import com.devtran.repository.UserRepository;
 import com.nimbusds.jose.JOSEException;
 import com.nimbusds.jose.JWSAlgorithm;
 import com.nimbusds.jose.JWSHeader;
@@ -58,6 +60,8 @@ public class AuthenticationService {
 	protected String SIGNER_KEY ;
 	
 	InvalidatedTokenRepository invalidatedTokenRepository;
+	
+	UserRepository userRepository;
 
 	public AuthenticationResponse authenticate(AuthenticationRequest request) {
 		var user = authenticationRepository.findByUsername(request.getUsername())
@@ -69,6 +73,30 @@ public class AuthenticationService {
 		if (!authenticated) {
 			throw new AppException(ErrorCode.UNAUTHENTICATED);
 		}
+		
+		var token = generateToken(user);
+		
+		return AuthenticationResponse.builder()
+				.token(token)
+				.authencated(true)
+				.build();
+	}
+	
+	public AuthenticationResponse refreshToken(RefreshRequest request) throws JOSEException, ParseException {
+		
+		var signJWT = verifyToken(request.getToken());
+		
+		var jit = signJWT.getJWTClaimsSet().getJWTID();
+		var expiryTime = signJWT.getJWTClaimsSet().getExpirationTime();
+		
+		InvalidatedToken invalidatedToken = InvalidatedToken.builder()
+				.id(jit)
+				.expiryTime(expiryTime)
+				.build();
+		invalidatedTokenRepository.save(invalidatedToken);
+		
+		var username = signJWT.getJWTClaimsSet().getSubject();
+		var user = userRepository.findByUsername(username).orElseThrow(() -> new AppException(ErrorCode.UNAUTHENTICATED));
 		
 		var token = generateToken(user);
 		
