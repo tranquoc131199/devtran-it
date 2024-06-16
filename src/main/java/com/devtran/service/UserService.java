@@ -41,7 +41,8 @@ public class UserService {
 	PasswordEncoder passwordEncoder;
 	RoleRepository roleRepository;
 
-	public User createRequest(UserCreationRequest request) {
+	public UserResponse createRequest(UserCreationRequest request) {
+		log.info("Service: createUser");
 		if (repository.existsByUsername(request.getUsername())) {
 			throw new AppException(ErrorCode.USER_EXISTED);
 		}
@@ -53,7 +54,7 @@ public class UserService {
 		roles.add(Role.USER.name());
 		//user.setRoles(roles);
 		
-		return repository.save(user);
+		return userMapper.toUserResponse(repository.save(user));
 	}
 
 	//@PreAuthorize("hasRole('ADMIN')")

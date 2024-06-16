@@ -3,8 +3,6 @@
  */
 package com.devtran.dto.response;
 
-import java.util.Set;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

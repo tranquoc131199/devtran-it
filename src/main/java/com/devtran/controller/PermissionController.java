@@ -12,18 +12,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.devtran.dto.request.ApiReponse;
 import com.devtran.dto.request.PermissionRequest;
 import com.devtran.dto.response.PermissionResponse;
-import com.devtran.mapper.UserMapper;
 import com.devtran.service.PermissionService;
-import com.devtran.service.UserService;
-
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author pc
@@ -33,7 +28,6 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/permissions")
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-@Slf4j
 public class PermissionController {
 	PermissionService permissionService;
 	

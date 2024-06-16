@@ -24,7 +24,7 @@ import lombok.experimental.FieldDefaults;
 public class ApiReponse<T> {
 
 	int code = 1000;
-	String messge;
+	String message;
 	T result;
 
 }

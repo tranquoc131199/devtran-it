@@ -3,9 +3,7 @@
  */
 package com.devtran.dto.response;
 
-import com.devtran.dto.request.ApiReponse;
 import com.fasterxml.jackson.annotation.JsonInclude;
-
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

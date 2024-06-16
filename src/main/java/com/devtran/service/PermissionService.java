@@ -4,20 +4,16 @@
 package com.devtran.service;
 
 import java.util.List;
-
 import org.springframework.stereotype.Service;
-
 import com.devtran.dto.request.PermissionRequest;
 import com.devtran.dto.response.PermissionResponse;
 import com.devtran.entity.Permission;
 import com.devtran.mapper.PermissionMapper;
 import com.devtran.repository.PermissionRepository;
-
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.var;
 import lombok.experimental.FieldDefaults;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author pc
@@ -27,7 +23,6 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-@Slf4j
 public class PermissionService {
 
 	PermissionRepository permissionRepository;

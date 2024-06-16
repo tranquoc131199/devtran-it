@@ -3,10 +3,7 @@
  */
 package com.devtran.entity;
 
-import java.time.LocalDate;
 import java.util.Date;
-import java.util.Set;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.AccessLevel;

@@ -13,18 +13,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.devtran.dto.request.ApiReponse;
-import com.devtran.dto.request.PermissionRequest;
 import com.devtran.dto.request.RoleRequest;
-import com.devtran.dto.response.PermissionResponse;
 import com.devtran.dto.response.RoleResponse;
-import com.devtran.entity.Role;
-import com.devtran.service.PermissionService;
 import com.devtran.service.RoleService;
 
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author pc
@@ -34,7 +29,6 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/roles")
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-@Slf4j
 public class RoleController {
 	RoleService roleService;
 	

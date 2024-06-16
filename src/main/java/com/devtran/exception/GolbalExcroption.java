@@ -11,10 +11,7 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-
 import com.devtran.dto.request.ApiReponse;
-
-import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintViolation;
 import lombok.extern.slf4j.Slf4j;
 
@@ -34,7 +31,7 @@ public class GolbalExcroption {
 		
 		ApiReponse response = new ApiReponse<>();
 		response.setCode(ErrorCode.UNCATGORIZED_EXCEPTION.getCode());
-		response.setMessge(ErrorCode.UNCATGORIZED_EXCEPTION.getMessage());
+		response.setMessage(ErrorCode.UNCATGORIZED_EXCEPTION.getMessage());
 
 		return ResponseEntity.ok().body(response);
 	}
@@ -49,7 +46,7 @@ public class GolbalExcroption {
 		ErrorCode errorCode = exception.getErrorCode();
 		ApiReponse response = new ApiReponse<>();
 		response.setCode(errorCode.getCode());
-		response.setMessge(errorCode.getMessage());
+		response.setMessage(errorCode.getMessage());
 
 		return ResponseEntity.status(errorCode.getStatusCode()).body(response);
 	}
@@ -75,7 +72,7 @@ public class GolbalExcroption {
 		
 		ApiReponse response = new ApiReponse<>();
 		response.setCode(errorCode.getCode());
-		response.setMessge(Objects.nonNull(arrtributes) ? mapAttribute(errorCode.getMessage(), arrtributes) : errorCode.getMessage());
+		response.setMessage(Objects.nonNull(arrtributes) ? mapAttribute(errorCode.getMessage(), arrtributes) : errorCode.getMessage());
 		
 		return ResponseEntity.status(errorCode.getStatusCode()).body(response);
 	}
@@ -87,7 +84,7 @@ public class GolbalExcroption {
 		return ResponseEntity.status(errorCode.getStatusCode()).body(
 				ApiReponse.builder()
 				.code(errorCode.getCode())
-				.messge(errorCode.getMessage())
+				.message(errorCode.getMessage())
 				.build()
 				);
 	}

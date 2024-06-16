@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.devtran.dto.request.ApiReponse;
 import com.devtran.dto.request.UserCreationRequest;
 import com.devtran.dto.request.UserUpdateRequest;
 import com.devtran.dto.response.UserResponse;
-import com.devtran.entity.User;
 import com.devtran.mapper.UserMapper;
 import com.devtran.service.UserService;
 import jakarta.validation.Valid;
@@ -42,12 +42,11 @@ public class UserController {
 	UserMapper userMapper;
 
 	@PostMapping
-	ApiReponse<User> createUser(@RequestBody @Valid UserCreationRequest request) {
-
-		ApiReponse<User> respose = new ApiReponse<>();
-		respose.setResult(userService.createRequest(request));
-
-		return respose;
+	ApiReponse<UserResponse> createUser(@RequestBody @Valid UserCreationRequest request) {
+		log.info("Controller: createUser");
+		return ApiReponse.<UserResponse>builder()
+                .result(userService.createRequest(request))
+                .build();
 	}
 
 	@GetMapping

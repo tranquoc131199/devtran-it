@@ -31,7 +31,7 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
 		response.setContentType(MediaType.APPLICATION_JSON_VALUE);
 		ApiReponse<?> apiReponse = ApiReponse.builder()
 				.code(errorCode.getCode())
-				.messge(errorCode.getMessage())
+				.message(errorCode.getMessage())
 				.build();
 		
 		ObjectMapper mapper = new ObjectMapper();
