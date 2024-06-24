@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.devtran.entity;
 
@@ -11,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -32,16 +33,16 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class User {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.UUID)
-	String id;
-	String username;
-	String password;
-	String firstName;
-	String lastName;
-	LocalDate lod;
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    String id;
 
-	@ManyToMany
-	Set<Role> roles;
+    String username;
+    String password;
+    String firstName;
+    String lastName;
+    LocalDate lod;
 
+    @ManyToMany
+    Set<Role> roles;
 }

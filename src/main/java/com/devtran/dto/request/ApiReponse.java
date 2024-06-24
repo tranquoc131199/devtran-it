@@ -1,9 +1,10 @@
 /**
- * 
+ *
  */
 package com.devtran.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,8 +24,7 @@ import lombok.experimental.FieldDefaults;
 @Builder
 public class ApiReponse<T> {
 
-	int code = 1000;
-	String message;
-	T result;
-
+    int code = 1000;
+    String message;
+    T result;
 }

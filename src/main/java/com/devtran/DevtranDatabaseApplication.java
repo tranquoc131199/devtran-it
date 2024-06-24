@@ -6,8 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class DevtranDatabaseApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(DevtranDatabaseApplication.class, args);
-	}
-
+    public static void main(String[] args) {
+        SpringApplication.run(DevtranDatabaseApplication.class, args);
+    }
 }

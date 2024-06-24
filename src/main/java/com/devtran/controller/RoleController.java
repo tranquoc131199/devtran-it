@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.devtran.controller;
 
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.devtran.dto.request.ApiReponse;
 import com.devtran.dto.request.RoleRequest;
 import com.devtran.dto.response.RoleResponse;
@@ -30,25 +31,25 @@ import lombok.experimental.FieldDefaults;
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class RoleController {
-	RoleService roleService;
-	
-	@PostMapping
-	ApiReponse<RoleResponse> create(@RequestBody RoleRequest request){
-		return ApiReponse.<RoleResponse>builder()
-				.result(roleService.create(request))
-				.build();
-	}
-	
-	@GetMapping
-	ApiReponse<List<RoleResponse>> getAll(){
-		return ApiReponse.<List<RoleResponse>>builder()
-				.result(roleService.getAll())
-				.build();
-	}
-	
-	@DeleteMapping("/{role}")
-	ApiReponse<Void> delete(@PathVariable String role){
-		roleService.delete(role);
-		return ApiReponse.<Void>builder().build();
-	}
+    RoleService roleService;
+
+    @PostMapping
+    ApiReponse<RoleResponse> create(@RequestBody RoleRequest request) {
+        return ApiReponse.<RoleResponse>builder()
+                .result(roleService.create(request))
+                .build();
+    }
+
+    @GetMapping
+    ApiReponse<List<RoleResponse>> getAll() {
+        return ApiReponse.<List<RoleResponse>>builder()
+                .result(roleService.getAll())
+                .build();
+    }
+
+    @DeleteMapping("/{role}")
+    ApiReponse<Void> delete(@PathVariable String role) {
+        roleService.delete(role);
+        return ApiReponse.<Void>builder().build();
+    }
 }

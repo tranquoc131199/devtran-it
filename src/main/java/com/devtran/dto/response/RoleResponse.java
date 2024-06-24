@@ -1,11 +1,12 @@
 /**
- * 
+ *
  */
 package com.devtran.dto.response;
 
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,9 +25,8 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Builder
 public class RoleResponse {
-	String namne;
-	String description;
-	
-	Set<PermissionResponse> permissions;
+    String namne;
+    String description;
 
+    Set<PermissionResponse> permissions;
 }

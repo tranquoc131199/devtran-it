@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.devtran.dto.request;
 
@@ -26,13 +26,12 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class UserUpdateRequest {
 
-	String password;
-	String firstName;
-	String lastName;
-	
-	@DobConstraint(min = 2, message = "INVALID_DOB")
-	LocalDate dob;
-	
-	List<String> roles;
+    String password;
+    String firstName;
+    String lastName;
 
+    @DobConstraint(min = 2, message = "INVALID_DOB")
+    LocalDate dob;
+
+    List<String> roles;
 }

@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.devtran.mapper;
 
@@ -19,11 +19,10 @@ import com.devtran.entity.User;
 @Mapper(componentModel = "spring")
 public interface UserMapper {
 
-	User toUser(UserCreationRequest request);
+    User toUser(UserCreationRequest request);
 
-	@Mapping(target = "roles", ignore = true)
-	void updateUser(@MappingTarget User user, UserUpdateRequest updateRequest);
+    @Mapping(target = "roles", ignore = true)
+    void updateUser(@MappingTarget User user, UserUpdateRequest updateRequest);
 
-	UserResponse toUserResponse(User user);
-
+    UserResponse toUserResponse(User user);
 }

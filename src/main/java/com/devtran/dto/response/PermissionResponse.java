@@ -1,9 +1,10 @@
 /**
- * 
+ *
  */
 package com.devtran.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,6 +23,6 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Builder
 public class PermissionResponse {
-	String name;
-	String description;
+    String name;
+    String description;
 }

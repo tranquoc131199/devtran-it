@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.devtran.repository;
 
@@ -16,8 +16,7 @@ import com.devtran.entity.User;
  */
 @Repository
 public interface AuthenticationRepository extends JpaRepository<User, String> {
-	//boolean existByUsername(String username);
+    // boolean existByUsername(String username);
 
-	Optional<User> findByUsername(String username);
-
+    Optional<User> findByUsername(String username);
 }

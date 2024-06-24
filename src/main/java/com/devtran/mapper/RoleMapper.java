@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.devtran.mapper;
 
@@ -14,12 +14,11 @@ import com.devtran.entity.Role;
  * @author pc
  *
  */
-
 @Mapper(componentModel = "spring")
 public interface RoleMapper {
 
-	@Mapping(target = "permissions", ignore = true)
-	Role toRole(RoleRequest request);
+    @Mapping(target = "permissions", ignore = true)
+    Role toRole(RoleRequest request);
 
-	RoleResponse toRoleResponse(Role role);
+    RoleResponse toRoleResponse(Role role);
 }

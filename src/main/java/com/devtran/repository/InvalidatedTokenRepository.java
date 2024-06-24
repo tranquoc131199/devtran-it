@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.devtran.repository;
 
@@ -13,6 +13,4 @@ import com.devtran.entity.InvalidatedToken;
  *
  */
 @Repository
-public interface InvalidatedTokenRepository extends JpaRepository<InvalidatedToken, String> {
-
-}
+public interface InvalidatedTokenRepository extends JpaRepository<InvalidatedToken, String> {}
